@@ -5,14 +5,14 @@ import {
 } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import { nanoid } from 'nanoid';
-import { getLocalStorage, KEY_PHONEBOOK } from '../../utils/Utils';
+import { useLocalStorage, KEY_PHONEBOOK } from '../../hooks/useLocalStorage';
 import ContactForm from '../ContactForm';
 import ContactList from '../ContactList';
 import Filter from '../Filter';
 import cssApp from './App.module.css';
 
 const App = () => {
-  const [contacts, setContacts] = useState(getLocalStorage());
+  const [contacts, setContacts] = useLocalStorage([]);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
