@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const KEY_PHONEBOOK = 'contacts';
 
 const useLocalStorage = defaultValue => {
-  const [storageData, setStorageData] = useState(() => {
+  const [data, setData] = useState(() => {
     return (
       JSON.parse(window.localStorage.getItem(KEY_PHONEBOOK)) ?? defaultValue
     );
   });
 
-  return [storageData, setStorageData];
+  useEffect(() => {
+    window.localStorage.setItem(KEY_PHONEBOOK, JSON.stringify(data));
+  }, [data]);
+
+  return [data, setData];
 };
 
 export { useLocalStorage, KEY_PHONEBOOK };

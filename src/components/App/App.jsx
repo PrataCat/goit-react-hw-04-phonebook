@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   NotificationManager,
   NotificationContainer,
 } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import { nanoid } from 'nanoid';
-import { useLocalStorage, KEY_PHONEBOOK } from '../../hooks/useLocalStorage';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import ContactForm from '../ContactForm';
 import ContactList from '../ContactList';
 import Filter from '../Filter';
@@ -14,10 +14,6 @@ import cssApp from './App.module.css';
 const App = () => {
   const [contacts, setContacts] = useLocalStorage([]);
   const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem(KEY_PHONEBOOK, JSON.stringify(contacts));
-  }, [contacts]);
 
   const saveContact = (userName, userNumber) => {
     if (contacts.some(el => el.name === userName)) {
